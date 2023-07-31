@@ -28,8 +28,6 @@ class DataLoaders:
             y_batch = self.y_train[indices[i : i+self.batch_size]]
             batches.append((x_batch, y_batch))
 
-        print(batches)
-        print(iter(batches))
         return iter(batches)
 
     def __str__(self):

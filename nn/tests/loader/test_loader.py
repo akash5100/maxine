@@ -11,7 +11,6 @@ class TestDataLoaders(unittest.TestCase):
 
     def test_data_loader_length(self):
         dls = DataLoaders(self.x_train, self.y_train, self.batch_size)
-        print(dls)
         self.assertEqual(len(dls), len(self.x_train) // self.batch_size)
 
     def test_data_loader_iteration(self):
