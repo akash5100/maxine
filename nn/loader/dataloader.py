@@ -17,8 +17,10 @@ class DataLoaders:
     def flatten_images(self, images):
         # for now assuming, I am training images (with 3 dimensions)
         # so to get size, b x h (number of pixels per image)
-        size = images.size(1)*images.size(2)
-        return images.view(-1, size)
+        if images.ndim > 2:
+            size = images.size(-1) * images.size(-2)
+            return images.view(-1, size)
+        return images
 
     def __len__(self):
         """Returns total number of data in single batch."""

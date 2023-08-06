@@ -1,13 +1,9 @@
 import torch
+from nn.utils import init_params, sigmoid
 
-def sigmoid(x):
-    return 1/(1+torch.exp(-x))
-
-def init_params(size, std):
-    return (torch.randn(size)*std).requires_grad_()
 
 class BasicOptim:
-    def __init__(self,params,lr): 
+    def __init__(self, params, lr): 
         self.params = list(params)
         self.lr = lr
 
@@ -22,7 +18,7 @@ class BasicOptim:
 
 class MNISTModel:
     def __init__(self, size, lr, std=1.0):
-        self.weights = init_params(size, std)
+        self.weights = init_params((size, 1), std)
         self.bias = init_params(1, std)
         self.optimizer = BasicOptim([self.weights, self.bias], lr)
 
@@ -52,14 +48,6 @@ class MNISTModel:
         preds = model(xb)
         loss = self.mnist_loss(preds=preds, target=yb)
         loss.backward()
-        
-    def batch_accuracy(xb, yb):
-        """calculate preds
-        use sigmoid to ... (you know why we use sigmoid)
-        if >0.5 return its mean"""
-        preds = sigmoid(xb)
-        correct = (preds > 0.5) == yb
-        return correct.float().mean()
     
     def step(self):
         # Use the optimizer to update parameters
