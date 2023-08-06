@@ -1,13 +1,13 @@
-# NN
-Creating Neural Network to train MNIST data from Scratch.
+I am creating Neural Network to train MNIST data from Scratch.
 
 Well with just one help:
-- Calculate Gradient (from pytorch)
+- I use `torch.Tensor`
+- to calculate Gradient I used `requires_grad_` (from PyTorch)
+
+See [demo](https://github.com/akash5100/nn/blob/main/nn/demo.ipynb), <a href="docs/nn/index.html">docs</a>.
 
 ## Goal 1 -- Implement `Learner` from scratch
-
 Here is my idea, top of the list represents class/function and below it represents its parameters. 
-
 - Learner
     - [x] DataLoaders
         - [x] collection (iter)
@@ -20,8 +20,8 @@ Here is my idea, top of the list represents class/function and below it represen
           calculate gradient for each data, update weights, set grads to zero
     - [ ] calculate grad (xb, yb, model)
         - [ ] make preds
-        - [ ] calculate loss
-        - [ ] backwardpass
+        - [ ] Calculate loss
+        - [ ] backward pass
     - [ ] model - which makes prediction
         - [ ] we do:
           wb@weights + bias
