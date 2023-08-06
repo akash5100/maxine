@@ -1,5 +1,3 @@
-
-*.ipynb
 dataset/
 
 # Ignore Python cache files

@@ -25,7 +25,7 @@ class Learner:
 
     def train_epoch(self):
         for xb, yb in self.dls:
-            self.model.calc_grad(xb, yb, self.model.linear1)
+            self.model.calc_grad(xb, yb, model=self.model.linear1)
             self.model.step()
             self.model.zero_grad()
 
