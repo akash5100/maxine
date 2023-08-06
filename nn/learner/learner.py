@@ -2,8 +2,9 @@ import torch
 from nn.loader.dataloader import DataLoaders
 from nn.utils import sigmoid
 
+
 class Learner:
-    def __init__(self, dls: DataLoaders, model:callable, loss_func=None, metrics=None):
+    def __init__(self, dls: DataLoaders, model: callable, loss_func=None, metrics=None):
         self.model = model
         self.dls = dls
         self.loss_func = loss_func
@@ -40,7 +41,6 @@ class Learner:
         accs = []
         for xb, yb in self.dls.get_validation_data():
             acc = self.batch_accuracy(model(xb), yb)
-            print(acc.item())
             accs.append(acc)
         return round(torch.stack(accs).mean().item(), 4)
 

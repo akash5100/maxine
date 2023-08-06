@@ -13,7 +13,7 @@ class DataLoaders:
         self.shuffle = shuffle
         self.x_val = x_val
         self.y_val = y_val
-    
+
     def flatten_images(self, images):
         # for now assuming, I am training images (with 3 dimensions)
         # so to get size, b x h (number of pixels per image)
@@ -37,7 +37,7 @@ class DataLoaders:
         for i in range(0, len(self.x_train), self.batch_size):
             x_batch = self.flatten_images(
                 self.x_train[indices[i : i + self.batch_size]]
-                )
+            )
             y_batch = self.y_train[indices[i : i + self.batch_size]]
             batches.append((x_batch, y_batch))
 

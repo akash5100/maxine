@@ -4,6 +4,7 @@ import torch
 from nn.loader.dataloader import DataLoaders
 from nn.model.linear import MNISTModel
 
+
 class TestMNISTModel(unittest.TestCase):
     def setUp(self):
         """
@@ -17,6 +18,7 @@ class TestMNISTModel(unittest.TestCase):
 
     def test_model(self):
         pass
+
 
 if __name__ == "__main__":
     unittest.main()

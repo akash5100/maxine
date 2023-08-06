@@ -3,18 +3,21 @@ import torch
 
 from nn.loader.dataloader import DataLoaders
 
+
 class TestDataLoaders(unittest.TestCase):
     def setUp(self):
         # test with more like a 3x3 image
-        self.x_train = torch.tensor([
-            [[1,2,1],[1,2,1],[1,2,1]], 
-            [[3,4,1],[1,2,1],[1,2,1]], 
-            [[5,6,1],[1,2,1],[1,2,1]], 
-            [[7,8,1],[1,2,1],[1,2,1]]])
-        self.y_train = torch.tensor([0,1,0,1])
+        self.x_train = torch.tensor(
+            [
+                [[1, 2, 1], [1, 2, 1], [1, 2, 1]],
+                [[3, 4, 1], [1, 2, 1], [1, 2, 1]],
+                [[5, 6, 1], [1, 2, 1], [1, 2, 1]],
+                [[7, 8, 1], [1, 2, 1], [1, 2, 1]],
+            ]
+        )
+        self.y_train = torch.tensor([0, 1, 0, 1])
         self.batch_size = 2
         self.dls = DataLoaders(self.x_train, self.y_train, self.batch_size)
-
 
     def test_data_loader_length(self):
         self.assertEqual(len(self.dls), len(self.x_train) // self.batch_size)
