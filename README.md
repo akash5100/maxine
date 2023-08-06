@@ -59,6 +59,11 @@ Create a python environment, then:
 pip install -r requirements.txt
 ```
 
+Install the project:
+```bash
+pip install -e .
+```
+
 Run unittest:
 ```bash
 python -m unittest discover

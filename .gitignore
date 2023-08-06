@@ -1,4 +1,62 @@
-__pycache__/
+
 *.ipynb
 dataset/
-*.py[cod]
+
+# Ignore Python cache files
+__pycache__/
+
+# Ignore compiled Python files
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore distribution build directory
+dist/
+
+# Ignore egg-info directory
+*.egg-info/
+
+# Ignore build directory
+build/
+
+# Ignore Jupyter Notebook checkpoint files
+.ipynb_checkpoints/
+
+# Ignore virtual environment directory (if used)
+venv/
+
+# Ignore pycache directory
+.pycache/
+
+# Ignore any log files
+*.log
+
+# Ignore any backup files
+*~
+
+# Ignore any temp files
+*.tmp
+*.bak
+*.swp
+
+# Ignore any database files
+*.db
+
+# Ignore any compiled code
+*.so
+*.dll
+*.exe
+
+# Ignore any wheel files
+*.whl
+
+# Ignore any other temporary or development files
+*.tmp
+*.bak
+*.swp
+*.idea/
+.vscode/
+__MACOSX/
+Thumbs.db
+.DS_Store
+
