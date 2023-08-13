@@ -1,6 +1,7 @@
 import torch
 from nn.loader.dataloader import DataLoaders
 from nn.utils import sigmoid
+from nn.model.linear import MNISTModel
 
 
 class Learner:
@@ -44,14 +45,23 @@ class Learner:
             accs.append(acc)
         return round(torch.stack(accs).mean().item(), 4)
 
-    def predict(self):
-        # todo
-        pass
+    def predict(self, **kwargs):
+        x = kwargs.get('x')
+        if x is not None:
+            with torch.no_grad():
+                preds = sigmoid(self.model.linear1(x))
+                return (preds > 0.5).int()
+        else:
+            # Handle the case where 'x' is not provided
+            return None
 
-    def save(self):
-        # todo
-        pass
+    def save(self, path, *args, **kwargs):
+        model_dict = self.model.model_state_dict()
+        torch.save(model_dict, path)
 
-    def load(self):
-        # todo
-        pass
+    def load(self, path):
+        model_dict = torch.load(path)
+        model = MNISTModel()
+        model.weights = model_dict['weights']
+        model.bias = model_dict['bias']
+        return model

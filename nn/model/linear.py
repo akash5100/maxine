@@ -1,5 +1,5 @@
 import torch
-from nn.utils import init_params, sigmoid
+from nn.utils import init_params, sigmoid, relu
 
 
 class BasicOptim:
@@ -24,7 +24,8 @@ class MNISTModel:
 
     def linear1(self, xb):
         """xb: x_train batch."""
-        return xb @ self.weights + self.bias
+        x = xb @ self.weights + self.bias
+        return relu(x)
 
     def mnist_loss(self, preds, target):
         """
@@ -56,3 +57,9 @@ class MNISTModel:
     def zero_grad(self):
         # use the optimizer to zero grads
         self.optimizer.zero_grad()
+
+    def model_state_dict(self):
+        return {
+            'weights': self.weights,
+            'bias': self.bias
+        }
