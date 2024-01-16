@@ -1,0 +1,32 @@
+This project is a fun implementation of Neural Network's-
+
+- Optim class -- Optimizer
+- Model class -- Neural Network model
+- MLOPS -- Operators required for Deep learning, like Sigmoid, ReLU etc
+
+The goal is learning the under-the-hood working of neurons.
+
+Libraries used-
+ - Numpy
+ - Pytorch's Tensor, only for calculating Gradient
+ - tqdm
+
+A much later goal in this project-
+ - remove pytorch dependency
+
+
+Here is a [demo training mnist dataset](https://github.com/akash5100/nn/blob/main/nn/demo.ipynb)
+
+Installation guide:
+
+```bash
+pip install -r requirements.txt
+```
+Install the project:
+```bash
+pip install -e .
+```
+Run unittest:
+```bash
+python -m unittest discover
+```
