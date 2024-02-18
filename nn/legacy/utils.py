@@ -11,5 +11,5 @@ def init_params(size, std):
 
 
 def relu(x):
-    """Relu relu relu relu"""
+    """Relu"""
     return torch.max(x, torch.tensor(0.0))

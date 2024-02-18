@@ -1,6 +1,6 @@
 import torch
 from nn.loader.dataloader import DataLoaders
-from nn.utils import sigmoid
+from nn.legacy.utils import sigmoid
 from nn.model.linear import MNISTModel
 
 
@@ -10,6 +10,7 @@ class Learner:
         self.dls = dls
         self.loss_func = loss_func
         self.metrics = metrics
+        self.losses, self.accuracies = [], []
 
     def fit(self, num_epochs):
         """
@@ -22,13 +23,14 @@ class Learner:
         for e in range(num_epochs):
             self.train_epoch()
             val_acc = self.validate_epoch(self.model.linear1)
+            self.accuracies.append(val_acc)
             print(f"Epoch {e+1}/{num_epochs}, Validation Accuracy: {val_acc:.4f}")
 
     def train_epoch(self):
         for xb, yb in self.dls:
+            self.model.zero_grad()
             self.model.calc_grad(xb, yb, model=self.model.linear1)
             self.model.step()
-            self.model.zero_grad()
 
     def batch_accuracy(self, xb, yb):
         """calculate preds
@@ -46,7 +48,7 @@ class Learner:
         return round(torch.stack(accs).mean().item(), 4)
 
     def predict(self, **kwargs):
-        x = kwargs.get('x')
+        x = kwargs.get("x")
         if x is not None:
             with torch.no_grad():
                 preds = sigmoid(self.model.linear1(x))
@@ -62,6 +64,6 @@ class Learner:
     def load(self, path):
         model_dict = torch.load(path)
         model = MNISTModel()
-        model.weights = model_dict['weights']
-        model.bias = model_dict['bias']
+        model.weights = model_dict["weights"]
+        model.bias = model_dict["bias"]
         return model
