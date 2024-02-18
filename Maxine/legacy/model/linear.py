@@ -1,5 +1,5 @@
 import torch
-from nn.legacy.utils import init_params, sigmoid, relu
+from Maxine.legacy.utils import init_params, sigmoid, relu
 
 
 class BasicOptim:

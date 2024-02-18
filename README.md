@@ -1,3 +1,7 @@
+# Maxine
+
+Named after Matrix Chain (Matrix Multiplication in series), after thats what Neural Nets are.
+
 This project is a fun implementation of Neural Network's-
 
 - Optim class -- Optimizer
@@ -25,8 +29,4 @@ pip install -r requirements.txt
 Install the project:
 ```bash
 pip install -e .
-```
-Run unittest:
-```bash
-python -m unittest discover
 ```
