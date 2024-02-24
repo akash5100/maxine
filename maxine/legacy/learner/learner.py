@@ -1,7 +1,7 @@
 import torch
-from Maxine.loader.dataloader import DataLoaders
-from Maxine.legacy.utils import sigmoid
-from Maxine.model.linear import MNISTModel
+from maxine.loader.dataloader import DataLoaders
+from maxine.legacy.utils import sigmoid
+from maxine.model.linear import MNISTModel
 
 
 class Learner:
