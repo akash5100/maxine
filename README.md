@@ -74,7 +74,6 @@ TODO
 
 ```py
 >>> from maxine.metrics import accuracy
->>> from maxine.accu
 >>> a = torch.randn(3,5).normal_(0,1)
 >>> a
 tensor([[ 1.7868e-01,  9.1171e-01,  9.0093e-01,  3.0340e-01, -5.1710e-01],
