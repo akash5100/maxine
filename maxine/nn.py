@@ -34,4 +34,5 @@ class Linear(Module):
         w, b = self.w.T, self.b.T
         return torch.matmul(x,w) + b
 
+    def parameters(self) -> Tensor: self.w.T, self.b.T
     def __repr__(self) -> str: return f'{self.w}'
