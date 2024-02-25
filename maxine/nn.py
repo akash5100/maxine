@@ -27,7 +27,7 @@ class Parameters:
 class Linear(Module):
     def __init__(self, in_: int, out_: int) -> None:
         self.w = Parameters(in_, out_)
-        self.b  = Parameters(out_)
+        self.b = Parameters(out_)
 
     def forward(self, x: Tensor):
         """Applies a linear transformation to the incoming data: y = x@w+b"""
