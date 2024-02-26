@@ -5,13 +5,7 @@ from functools import reduce
 # https://docs.python.org/3.0/library/functools.html?highlight=reduce#functools.reduce
 
 
-
-class Module(object):
-    def forward(self, *x): raise NotImplementedError
-    def backward(self): raise NotImplementedError
-
-
-class Parameters:
+class Parameter:
     "Initializes trainable weights"
     def __init__(self, *sz: Union[int, Tuple, List]) -> None:
         t_sz = reduce(lambda x,y: x*y, sz) if sz else 1
@@ -20,19 +14,22 @@ class Parameters:
     @property
     def shape(self): return self.w.shape
     @property
-    def T(self) -> Tensor: return self.w
+    def weight(self) -> Tensor: return self.w
+    @property
+    def grad(self): return self.w.grad
     def __repr__(self) -> str: return f"{self.w}"
 
 
+class Module(object):
+    def forward(self, *x): raise NotImplementedError
+    def backward(self): raise NotImplementedError
+    def parameters(self): raise NotImplementedError # need for optim
+    def zero_grad(self): raise NotImplementedError  # need for optim
+
+
 class Linear(Module):
-    def __init__(self, in_: int, out_: int) -> None:
-        self.w = Parameters(in_, out_)
-        self.b = Parameters(out_)
-
-    def forward(self, x: Tensor):
-        """Applies a linear transformation to the incoming data: y = x@w+b"""
-        w, b = self.w.T, self.b.T
-        return torch.matmul(x,w) + b
-
-    def parameters(self) -> Tensor: self.w.T, self.b.T
+    def __init__(self, in_: int, out_: int) -> None: self.w, self.b = Parameter(in_, out_), Parameter(out_)
     def __repr__(self) -> str: return f'{self.w}'
+    def forward(self, x: Tensor) -> Tensor: return x@self.w.weight + self.b.weight
+    def parameters(self) -> Tensor: return self.w.weight, self.b.weight
+    def zero_grad(self): self.w.weight.grad, self.b.weight.grad = None, None
