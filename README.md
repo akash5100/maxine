@@ -31,8 +31,7 @@ A much later goal in this project-
  - Create tensor module
 
 
-Here is a [demo training mnist dataset](https://github.com/akash5100/nn/blob/main/nn/demo.ipynb)
-
+Here is a [demo training mnist dataset](https://github.com/akash5100/maxine/blob/main/examples/mnist_maxine.ipynb)
 
 ## NN Module
 
