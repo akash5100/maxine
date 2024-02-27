@@ -21,7 +21,7 @@ class Parameter:
 
 
 class Module(object):
-    def forward(self, *x): raise NotImplementedError
+    def forward(self, x): raise NotImplementedError
     def backward(self): raise NotImplementedError
     def parameters(self): raise NotImplementedError # need for optim
     def zero_grad(self): raise NotImplementedError  # need for optim
@@ -33,3 +33,12 @@ class Linear(Module):
     def forward(self, x: Tensor) -> Tensor: return x@self.w.weight + self.b.weight
     def parameters(self) -> Tensor: return self.w.weight, self.b.weight
     def zero_grad(self): self.w.weight.grad, self.b.weight.grad = None, None
+
+class Dropout(Module):
+    def __init__(self, p) -> None: self.p = p
+    def forward(self, x: Tensor):
+        mask = (x.div_(1-self.p)) * (x.new(*x.shape).bernoulli_(self.p))
+        return mask * x
+
+class Embedding(Module):
+    pass
