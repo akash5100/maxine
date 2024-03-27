@@ -36,29 +36,13 @@ Here is a [demo training mnist dataset](https://github.com/akash5100/maxine/blob
 ## NN Module
 
 ```py
->>> import maxine.nn as nn
->>> ih = nn.Linear(784, 10)
+import maxine.nn as nn
 
->>> ih.w.shape
-torch.Size([784, 10])
->>> ih.b.shape
-torch.Size([10])
+x = torch.randn(60000, 1, 28, 28)
+x = x.view(x.size(0), -1)
 
->>> x_train = torch.randn(60000, 1, 28, 28)
->>> x_train = x_train.view(x_train.size(0), -1)
->>> x_train.shape
-torch.Size([60000, 784])
-
->>> ih.forward(x_train)
-tensor([[ 0.3503,  0.0352,  0.5296,  ..., -0.3257, -0.0389, -0.2227],
-        [ 0.1385,  0.4990,  0.3538,  ...,  0.0127, -0.0094, -0.0592],
-        [-0.0821,  0.0817,  0.3141,  ..., -0.1158,  0.1390, -0.5184],
-        ...,
-        [-0.0211,  0.0705, -0.0290,  ..., -0.2370, -0.1585, -0.1410],
-        [ 0.1859,  0.2334,  0.4287,  ..., -0.1808, -0.3707, -0.3433],
-        [ 0.3480,  0.5040,  0.2392,  ..., -0.0928,  0.2971, -0.0568]],
-       grad_fn=<AddBackward0>)
->>>
+ih = nn.Linear(784, 10)
+ih.forward(x)
 ```
 
 
@@ -72,15 +56,13 @@ TODO
 ## Metrics
 
 ```py
->>> from maxine.metrics import accuracy
->>> a = torch.randn(3,5).normal_(0,1)
->>> a
-tensor([[ 1.7868e-01,  9.1171e-01,  9.0093e-01,  3.0340e-01, -5.1710e-01],
-        [ 4.1547e-01,  1.3547e+00, -5.9686e-01,  9.2384e-01,  2.4055e-02],
-        [-1.5665e+00,  1.0830e+00,  9.0813e-04, -6.7731e-01,  1.3082e-01]])
->>> b = torch.Tensor([2, 1, 5])
->>> accuracy(a, b)
-tensor(0.3333)
+from maxine.metrics import accuracy
+
+a = torch.randn(3,5).normal_(0,1)
+b = torch.Tensor([2, 1, 5])
+accuracy(a, b)
+# output:
+# tensor(0.3333)
 ```
 
 
